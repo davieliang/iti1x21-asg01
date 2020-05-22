@@ -22,11 +22,11 @@ public static String winner() {
 
         for (List<Integer> l : winCon) {
             if (playerPosition.containsAll(l)) {
-                return "Congargulations !!!! You Won :)";
+                return "x win";
             } else if (cpuPosition.containsAll(l)) {
-                return "Robot Nailed it. Cpu Won!!!";
+                return "o win";
             } else if (playerPosition.size() + cpuPosition.size() == 9) {
-                return "It's a Tie Buddy";
+                return "Tie";
             }
         }
         return "";
