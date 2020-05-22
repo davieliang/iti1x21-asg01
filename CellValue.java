@@ -23,12 +23,10 @@ public static void placePiece(char[][] gameBoard, int placement, String user) {
         if(user.equals("cpu")) {
             symbol = cpuIcon;
             cpuPosition.add(placement);
-            System.out.println("\n Cpu placed at at " + placement);
 
         } else {
             symbol = userIcon;
             playerPosition.add(placement);
-            System.out.println("\n" + user+ "Placed at " + placement);
 
         }
         switch (placement) {
