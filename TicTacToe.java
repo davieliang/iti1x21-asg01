@@ -1,3 +1,4 @@
+import java.util.
 /**
  * The class <b>TicTacToe</b> is the
  * class that implements the Tic Tac Toe Game.
@@ -8,9 +9,12 @@
  * Originally written by Guy-Vincent Jourdan, University of Ottawa
  */
 public class TicTacToe {
+	static ArrayList<Integer> playerPosition = new ArrayList<Integer>();
+	static ArrayList<Integer> cpuPosition = new ArrayList<Integer>();
+	static String  user;
+	static int userSymbol;
+		}
 
-  // FINISH THE VARIABLE DECLARATION
-  // then remove this comment
 
   /**
    * The internal representation of the board
@@ -68,9 +72,42 @@ public class TicTacToe {
    * The default empty constructor.  The default game
    * should be a 3x3 grid with 3 cells in a row to win.
    */
-  public TicTacToe() {
 
-    // YOUR CODE HERE
+  public static void main(String[] args) {
+		new TicTacToe();
+		
+		char[][] gameBoard = { { ' ', '|', ' ', '|', ' ' }, { '---', '-','---','-','---'},{ ' ', '|', ' ', '|', ' ' },
+                          { '---', '-','---','-','---'},{ ' ', '|', ' ', '|', ' ' },};
+		printGameConsole(gameBoard);
+		while (true) {
+			Scanner sc = new Scanner(System.in);
+			System.out.print("x to play:");
+			int playerPlacement = sc.nextInt();
+			while (playerPosition.contains(playerPlacement) || cpuPosition.contains(playerPlacement)) {
+				System.out.println("invalid, x to play:");
+				playerPlacement = sc.nextInt();
+			}
+			String finalResult = winner();
+			if (finalResult.length() > 0) {
+				System.out.print(finalResult);
+				break;
+			}
+			placePiece(gameBoard, playerPlacement,user);
+			printGameConsole(gameBoard);
+			finalResult = winner();
+			if (finalResult.length() > 0) {
+				System.out.print(finalResult);
+				break;
+			}
+			Random rand = new Random();
+			int cpuPlacement = rand.nextInt(9) + 1;
+			while (playerPosition.contains(cpuPlacement) || cpuPosition.contains(cpuPlacement)) {
+				cpuPlacement = rand.nextInt(9) + 1;
+			}
+			placePiece(gameBoard, cpuPlacement, "cpu");
+			printGameConsole(gameBoard);
+		}
+	}
 
   }
 
@@ -232,9 +269,14 @@ public class TicTacToe {
    *
    * @return String representation of the game
    */
-  public String toString() {
-
-    // YOUR CODE HERE
+ 	public static void printGameConsole(char[][] gameBoard) {
+		for (char[] row : gameBoard) {
+			for (char c : row) {
+				System.out.print(c);
+			}
+			System.out.println();
+		}
+	}
 
   }
 
